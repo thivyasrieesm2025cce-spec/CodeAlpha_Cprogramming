@@ -1,5 +1,5 @@
-/*1. Basic – Calculator Program
-Code:*/
+1. Basic – Calculator Program
+Code:
 #include <stdio.h>
 
 int main() {
