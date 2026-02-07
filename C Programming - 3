@@ -1,0 +1,51 @@
+3. Student Management System
+Code:
+#include <stdio.h>
+
+struct student {
+    int roll;
+    char name[20];
+};
+
+int main() {
+    struct student s;
+    FILE *fp;
+    int ch, r, found;
+
+    do {
+        printf("\n1.Add 2.Display 3.Search 4.Exit\n");
+        scanf("%d",&ch);
+
+        if(ch==1){
+            fp=fopen("stu.dat","ab");
+            printf("Roll & Name: ");
+            scanf("%d %s",&s.roll,s.name);
+            fwrite(&s,sizeof(s),1,fp);
+            fclose(fp);
+        }
+
+        else if(ch==2){
+            fp=fopen("stu.dat","rb");
+            while(fread(&s,sizeof(s),1,fp))
+                printf("%d %s\n",s.roll,s.name);
+            fclose(fp);
+        }
+
+        else if(ch==3){
+            printf("Enter roll: ");
+            scanf("%d",&r);
+            fp=fopen("stu.dat","rb");
+            found=0;
+            while(fread(&s,sizeof(s),1,fp))
+                if(s.roll==r){
+                    printf("Found: %s\n",s.name);
+                    found=1;
+                }
+            if(!found) printf("Not found");
+            fclose(fp);
+        }
+
+    } while(ch!=4);
+
+    return 0;
+}
